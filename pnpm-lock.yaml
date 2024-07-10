@@ -11,6 +11,9 @@ dependencies:
   '@node-rs/argon2':
     specifier: ^1.8.3
     version: 1.8.3
+  '@preact/signals-react':
+    specifier: ^2.1.0
+    version: 2.1.0(react@19.0.0-rc-c3cdbec0a7-20240708)
   '@t3-oss/env-nextjs':
     specifier: ^0.10.1
     version: 0.10.1(typescript@5.5.3)(zod@3.23.8)
@@ -1461,6 +1464,20 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@preact/signals-core@1.7.0:
+    resolution: {integrity: sha512-bEZLgmJGSBVP5PUPDowhPW3bVdMmp9Tr5OEl+SQK+8Tv9T7UsIfyN905cfkmmeqw8z4xp8T6zrl4M1uj9+HAfg==}
+    dev: false
+
+  /@preact/signals-react@2.1.0(react@19.0.0-rc-c3cdbec0a7-20240708):
+    resolution: {integrity: sha512-jWq2ldDWXdbKpg+aMGuOZfj9tS5JkVlGJ5hGNzNe1Zfe7RLFfvldBEfNe6ZT7KZddecAxKhyoxSsEypgbfx/Gw==}
+    peerDependencies:
+      react: ^16.14.0 || 17.x || 18.x
+    dependencies:
+      '@preact/signals-core': 1.7.0
+      react: 19.0.0-rc-c3cdbec0a7-20240708
+      use-sync-external-store: 1.2.2(react@19.0.0-rc-c3cdbec0a7-20240708)
+    dev: false
 
   /@rushstack/eslint-patch@1.10.3:
     resolution: {integrity: sha512-qC/xYId4NMebE6w/V33Fh9gWxLgURiNYgVNObbJl2LZv0GUUItCcCqC5axQSwRaAgaxl2mELq1rMzlswaQ0Zxg==}
@@ -4725,6 +4742,14 @@ packages:
     dependencies:
       punycode: 2.3.1
     dev: true
+
+  /use-sync-external-store@1.2.2(react@19.0.0-rc-c3cdbec0a7-20240708):
+    resolution: {integrity: sha512-PElTlVMwpblvbNqQ82d2n6RjStvdSoNe9FG28kNfz3WiXilJm4DdNkEzRhCZuIDwY8U08WVihhGR5iRqAwfDiw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 19.0.0-rc-c3cdbec0a7-20240708
+    dev: false
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
