@@ -1,5 +1,7 @@
 import LoggedInStatus from "@/components/auth/headerSections/logged-in";
 import LoggedOutStatus from "@/components/auth/headerSections/logged-out";
+import UserBadge from "@/components/auth/user-badge";
+import AuthProvider from "@/providers/AuthProvider";
 import { validateRequest } from "@/server/auth/lucia";
 import "@/styles/globals.css";
 
@@ -14,22 +16,33 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
-  const { user } = await validateRequest();
+  const validate = await validateRequest();
 
   return (
     <html lang="en" className={GeistSans.variable}>
       <body>
-        <header className="sticky top-0 flex w-full items-center justify-between px-3 py-4">
-          <div className="flex items-center justify-center">
-            <Link href="/" className="underline-offset-2 hover:underline">
-              React19 Playground
-            </Link>
-          </div>
-          <nav className="flex flex-row items-center justify-center gap-6">
-            {user ? <LoggedInStatus user={user} /> : <LoggedOutStatus />}
-          </nav>
-        </header>
-        {children}
+        <AuthProvider
+          user={validate.user}
+          clientIP={validate.clientIP}
+          session={validate.session}
+        >
+          <header className="sticky top-0 flex w-full items-center justify-between px-6 py-5">
+            <div className="flex items-center justify-center">
+              <Link href="/" className="underline-offset-2 hover:underline">
+                React19 Playground
+              </Link>
+            </div>
+            <nav className="flex flex-row items-center justify-center gap-6">
+              {validate.user ? (
+                <LoggedInStatus user={validate.user} />
+              ) : (
+                <LoggedOutStatus />
+              )}
+            </nav>
+          </header>
+          {children}
+          <UserBadge />
+        </AuthProvider>
       </body>
     </html>
   );

@@ -1,8 +1,10 @@
+"use client";
+
 import { createContext, use } from "react";
 import type { Session, User } from "lucia";
 import { useSignals } from "@preact/signals-react/runtime";
 import { type Signal, signal } from "@preact/signals-react";
-import { Prettify } from "@/util_types";
+import type { Prettify } from "@/util_types";
 
 interface AuthContextValue {
   user: Signal<User | null>;
