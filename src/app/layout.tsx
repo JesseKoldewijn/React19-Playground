@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
-  const { user, clientIP } = await validateRequest();
+  const { user } = await validateRequest();
 
   return (
     <html lang="en" className={GeistSans.variable}>

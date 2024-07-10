@@ -22,7 +22,6 @@ const LoggedInStatus = async ({
     >
       <div>
         <span>Welcome back, {user.username}!</span>
-        <span className="text-xs">IP: {JSON.stringify(user)}</span>
       </div>
       <button type="submit" className="underline-offset-2 hover:underline">
         Sign Out
