@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { type ActionResult, Form } from "@/server/auth/form";
 import { lucia } from "@/server/auth/lucia";
 import { db } from "@/server/db";
@@ -23,9 +24,9 @@ const LoggedInStatus = async ({
       <div>
         <span>Welcome back, {user.username}!</span>
       </div>
-      <button type="submit" className="underline-offset-2 hover:underline">
+      <Button type="submit" variant="link" size="sm" className="px-0">
         Sign Out
-      </button>
+      </Button>
     </Form>
   );
 };

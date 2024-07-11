@@ -1,13 +1,14 @@
-import LoggedInStatus from "@/components/auth/headerSections/logged-in";
-import LoggedOutStatus from "@/components/auth/headerSections/logged-out";
 import UserBadge from "@/components/auth/user-badge";
+import Header from "@/components/header";
 import AuthProvider from "@/providers/AuthProvider";
+import ThemeProvider from "@/providers/ThemeProvider";
 import { validateRequest } from "@/server/auth/lucia";
-import "@/styles/globals.css";
+import type { Theme } from "@/store/theme";
+import "@/styles/tailwind.css";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
-import Link from "next/link";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "React.js 19 - Playground",
@@ -16,32 +17,25 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
+  const cookieJar = cookies();
+  const themeCookie = cookieJar.get("r19-theme")?.value as Theme | undefined;
+  const theme = themeCookie == "light" ? "light" : "dark";
+
   const validate = await validateRequest();
 
   return (
-    <html lang="en" className={GeistSans.variable}>
+    <html lang="en" className={theme + " " + GeistSans.variable}>
       <body>
         <AuthProvider
           user={validate.user}
           clientIP={validate.clientIP}
           session={validate.session}
         >
-          <header className="sticky top-0 flex w-full items-center justify-between px-6 py-5">
-            <div className="flex items-center justify-center">
-              <Link href="/" className="underline-offset-2 hover:underline">
-                React19 Playground
-              </Link>
-            </div>
-            <nav className="flex flex-row items-center justify-center gap-6">
-              {validate.user ? (
-                <LoggedInStatus user={validate.user} />
-              ) : (
-                <LoggedOutStatus />
-              )}
-            </nav>
-          </header>
-          {children}
-          <UserBadge />
+          <ThemeProvider initialTheme={theme}>
+            <Header requestCtx={validate} />
+            {children}
+            <UserBadge />
+          </ThemeProvider>
         </AuthProvider>
       </body>
     </html>

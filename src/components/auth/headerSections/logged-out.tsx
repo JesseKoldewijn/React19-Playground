@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -15,7 +16,7 @@ const LoggedOutStatus = () => {
   }
 
   return (
-    <div className="flex flex-row items-center justify-center gap-4">
+    <div className="flex flex-row items-center justify-center gap-6">
       <LoginLink />
       <RegisterLink />
     </div>
@@ -26,16 +27,16 @@ export default LoggedOutStatus;
 
 const LoginLink = () => {
   return (
-    <Link href="/login" className="underline-offset-2 hover:underline">
-      Login
-    </Link>
+    <Button variant="link" size="sm" className="px-0" asChild>
+      <Link href="/login">Login</Link>
+    </Button>
   );
 };
 
 const RegisterLink = () => {
   return (
-    <Link href="/signup" className="underline-offset-2 hover:underline">
-      Register
-    </Link>
+    <Button variant="link" size="sm" className="px-0" asChild>
+      <Link href="/signup">Register</Link>
+    </Button>
   );
 };
