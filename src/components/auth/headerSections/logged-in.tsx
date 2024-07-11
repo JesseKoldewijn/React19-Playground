@@ -5,6 +5,7 @@ import { db } from "@/server/db";
 import { sessionTable } from "@/server/schema";
 import { eq } from "drizzle-orm";
 import type { DatabaseSessionAttributes } from "lucia";
+import { LogOutIcon } from "lucide-react";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { type HTMLAttributes } from "react";
@@ -18,13 +19,26 @@ const LoggedInStatus = async ({
   return (
     <Form
       action={handleSignout}
-      className="flex flex-row items-center justify-center gap-4"
+      className="flex flex-row items-center justify-center gap-1 sm:gap-4"
       {...rest}
     >
-      <div>
+      <div className="hidden items-center justify-center sm:flex">
         <span>Welcome back, {user.username}!</span>
       </div>
-      <Button type="submit" variant="link" size="sm" className="px-0">
+      <Button
+        type="submit"
+        size="icon"
+        className="flex h-10 w-10 min-w-10 items-center justify-center rounded-full sm:hidden"
+      >
+        <LogOutIcon className="h-5 w-5" />
+        <span className="sr-only">Sign Out</span>
+      </Button>
+      <Button
+        type="submit"
+        variant="link"
+        size="sm"
+        className="hidden items-center justify-center px-0 sm:flex"
+      >
         Sign Out
       </Button>
     </Form>

@@ -20,8 +20,8 @@ const Header = ({ requestCtx: validate }: HeaderProps) => {
           React19 Playground
         </Link>
       </div>
-      <div className="flex flex-row items-center justify-center gap-6">
-        <nav>
+      <div className="flex flex-row items-center justify-end gap-4 sm:gap-6">
+        <nav className="flex items-center justify-end">
           {validate.user ? (
             <LoggedInStatus user={validate.user} />
           ) : (
