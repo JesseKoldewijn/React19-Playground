@@ -40,11 +40,10 @@ async function handleSignout(): Promise<ActionResult> {
   const sessionCookie = lucia.createBlankSessionCookie();
 
   if (oldSessionId) {
-    const removedOldSession = await db
+    await db
       .delete(sessionTable)
       .where(eq(sessionTable.id, oldSessionId))
       .execute();
-    console.log(removedOldSession, oldSessionId);
   }
 
   headers.set("Set-Cookie", sessionCookie.serialize());

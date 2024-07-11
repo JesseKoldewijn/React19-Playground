@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 const CORS_CONFIG = {
   enableOriginLock: false,
@@ -46,6 +45,30 @@ export function middleware(request: NextRequest) {
   const ipAddr = ip ? ip : request.headers.get("x-forwarded-for");
   if (ip) response.headers.set("x-forwarded-for", ipAddr ?? "unknown");
 
+  // Request guard
+  const nextActionID = request.headers.get("Next-Action");
+
+  const isAuthUrl =
+    request.url.includes("/login") || request.url.includes("/signup");
+  const isPost = request.method === "POST";
+
+  const isAuthRequest = isAuthUrl && isPost;
+
+  if (isAuthRequest && !nextActionID) {
+    console.log("Blocked auth request", request.url);
+    // block auth requests if not originating from application
+    const redirectedReq = NextResponse.redirect(
+      new URL("/api/blocked", request.url),
+    );
+
+    redirectedReq.headers.set("x-client-ip", request.ip ?? "unknown");
+    redirectedReq.headers.set("x-origin-url", request.url);
+    redirectedReq.headers.set("x-origin-method", request.method);
+
+    return redirectedReq;
+  }
+
+  // returning regular request
   return response;
 }
 
