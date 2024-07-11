@@ -28,6 +28,7 @@
     "next": "15.0.0-rc.0",
     "react": "19.0.0-rc-378b305958-20240710",
     "react-dom": "19.0.0-rc-378b305958-20240710",
+    "recharts": "^2.12.7",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8",
