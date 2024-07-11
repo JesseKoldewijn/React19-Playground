@@ -27,7 +27,6 @@
     "plugins": [{ "name": "next" }],
     "incremental": true,
 
-    "types": ["node", "next", "react", "react-dom"],
     "typeRoots": ["./node_modules/@types"],
 
     /* Path Aliases */
