@@ -19,13 +19,16 @@
     "checkJs": true,
 
     /* Bundled projects */
-    "lib": ["dom", "dom.iterable", "ES2022"],
+    "lib": ["dom", "dom.iterable", "esnext", "WebWorker"],
     "noEmit": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "jsx": "preserve",
     "plugins": [{ "name": "next" }],
     "incremental": true,
+
+    "types": ["node", "next", "react", "react-dom"],
+    "typeRoots": ["./node_modules/@types"],
 
     /* Path Aliases */
     "baseUrl": ".",

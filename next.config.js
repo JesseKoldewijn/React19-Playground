@@ -10,6 +10,7 @@ const config = {
     reactCompiler: true,
   },
   serverExternalPackages: ["@node-rs/argon2"],
+  transpilePackages: ["three"],
   poweredByHeader: false,
 };
 
