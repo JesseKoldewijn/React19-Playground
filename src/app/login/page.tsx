@@ -49,9 +49,7 @@ export default async function Page() {
                 className="h-10 w-2/3"
               />
             </div>
-            <Button className="mt-2 w-full bg-black py-2 text-white">
-              Continue
-            </Button>
+            <Button className="mt-2 w-full py-2">Continue</Button>
           </div>
         </Form>
         <Button variant="link" asChild>
