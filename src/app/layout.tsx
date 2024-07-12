@@ -1,6 +1,8 @@
 import UserBadge from "@/components/auth/user-badge";
 import Header from "@/components/header";
+import { env } from "@/env";
 import AuthProvider from "@/providers/AuthProvider";
+import AxeCoreProvider from "@/providers/AxeCoreProvider";
 import ThemeProvider from "@/providers/ThemeProvider";
 import { validateRequest } from "@/server/auth/lucia";
 import type { Theme } from "@/store/theme";
@@ -26,17 +28,19 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" className={theme + " " + GeistSans.variable}>
       <body>
-        <AuthProvider
-          user={validate.user}
-          clientIP={validate.clientIP}
-          session={validate.session}
-        >
-          <ThemeProvider initialTheme={theme}>
-            <Header requestCtx={validate} />
-            {children}
-            <UserBadge />
-          </ThemeProvider>
-        </AuthProvider>
+        <AxeCoreProvider enabled={env.NODE_ENV !== "production"}>
+          <AuthProvider
+            user={validate.user}
+            clientIP={validate.clientIP}
+            session={validate.session}
+          >
+            <ThemeProvider initialTheme={theme}>
+              <Header requestCtx={validate} />
+              {children}
+              <UserBadge />
+            </ThemeProvider>
+          </AuthProvider>
+        </AxeCoreProvider>
       </body>
     </html>
   );

@@ -19,6 +19,7 @@ const ThemeToggle = ({ initialTheme }: { initialTheme?: Theme }) => {
             : currentTheme ?? initialTheme
         }
       />
+      <span className="sr-only">Toggle theme</span>
     </Button>
   );
 };
