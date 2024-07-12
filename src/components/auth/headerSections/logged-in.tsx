@@ -67,5 +67,5 @@ async function handleSignout(): Promise<ActionResult> {
     sessionCookie.attributes,
   );
 
-  return redirect("/");
+  return redirect("/?signedOut=true");
 }
