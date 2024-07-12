@@ -47,11 +47,25 @@ const AuthProvider = ({
   };
 
   const updateClientIP = async () => {
+    const lastFetchedString = localStorage.getItem("ipLastFetched");
+    const lastFetched = lastFetchedString ? new Date(lastFetchedString) : null;
+
+    if (
+      lastFetched &&
+      new Date().getTime() - lastFetched.getTime() < 1000 * 60 * 60
+    ) {
+      // if the IP was fetched less than an hour ago, don't fetch it again
+      return;
+    }
+
     const res = await fetch("/api/client");
     if (!res.ok) return;
     const { clientDetails } = (await res.json()) as ClientDetailsResponse;
     const { ip } = clientDetails;
-    if (ip) setClientIP(ip);
+    if (ip) {
+      setClientIP(ip);
+      localStorage.setItem("ipLastFetched", new Date().toISOString());
+    }
   };
 
   useEffect(() => {

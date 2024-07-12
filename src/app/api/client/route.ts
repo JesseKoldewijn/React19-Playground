@@ -15,7 +15,7 @@ export const GET = async (req: NextRequest) => {
 
   const body: ClientDetailsResponse = {
     clientDetails: {
-      ip: req.ip,
+      ip: req.ip ?? headers.get("x-forwarded-for") ?? undefined,
       ua: headers.get("user-agent") ?? undefined,
     },
   };
