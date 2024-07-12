@@ -60,6 +60,7 @@ const RandomWords = () => {
               "transition-colors duration-500 ease-linear",
               animation === "in" ? "text-background" : "text-foreground",
             )}
+            aria-hidden
           >
             {word}
           </div>
