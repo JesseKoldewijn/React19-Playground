@@ -12,6 +12,7 @@
     "drizzle:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@axe-core/react": "^4.9.1",
     "@lucia-auth/adapter-drizzle": "^1.0.7",
     "@node-rs/argon2": "^1.8.3",
     "@preact/signals-react": "^2.1.0",
