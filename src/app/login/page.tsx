@@ -21,7 +21,7 @@ export default async function Page() {
   }
 
   return (
-    <div className="inset-0 flex min-h-[95svh] w-full flex-col items-center justify-center">
+    <div className="inset-0 flex min-h-[94svh] w-full flex-col items-center justify-center">
       <div className="-mt-14 flex max-w-sm flex-col gap-4 text-center md:max-w-md">
         <h1 className="text-2xl font-bold">Sign in</h1>
         <Form action={login}>

@@ -1,6 +1,6 @@
 const HomePage = () => {
   return (
-    <main className="flex min-h-[95svh] flex-col items-center justify-center">
+    <main className="flex min-h-[94svh] flex-col items-center justify-center">
       <div className="flex max-w-sm flex-col gap-2 text-center md:max-w-md">
         <h1 className="text-balance text-2xl font-bold">
           Welcome to the React19 Playground
