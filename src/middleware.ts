@@ -48,14 +48,13 @@ export function middleware(request: NextRequest) {
   // Request guard
   const nextActionID = request.headers.get("Next-Action");
 
-  const isAuthUrl =
-    request.url.includes("/login") || request.url.includes("/signup");
+  const isNotApiEndpoint = !request.nextUrl.pathname.startsWith("/api");
   const isPost = request.method === "POST";
 
-  const isAuthRequest = isAuthUrl && isPost;
+  const isPostToNonApiPath = isNotApiEndpoint && isPost;
 
-  if (isAuthRequest && !nextActionID) {
-    console.log("Blocked auth request", request.url);
+  if (isPostToNonApiPath && !nextActionID) {
+    console.log("Blocked request", request.url);
     // block auth requests if not originating from application
     const redirectedReq = NextResponse.redirect(
       new URL("/api/blocked", request.url),
