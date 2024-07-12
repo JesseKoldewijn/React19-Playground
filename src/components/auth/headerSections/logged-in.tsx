@@ -49,6 +49,7 @@ export default LoggedInStatus;
 
 async function handleSignout(): Promise<ActionResult> {
   "use server";
+
   const oldSessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
   const headers = new Headers();
   const sessionCookie = lucia.createBlankSessionCookie();
