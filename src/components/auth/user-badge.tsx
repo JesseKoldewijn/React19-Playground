@@ -12,7 +12,7 @@ const UserBadge = () => {
 
   return (
     <div
-      className="fixed bottom-6 right-6 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full border-2 bg-neutral-950 text-3xl text-neutral-100"
+      className="fixed bottom-6 right-6 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full border-2 border-foreground bg-foreground text-3xl text-background transition-colors duration-500"
       onMouseEnter={() => isHovering(true)}
       onMouseLeave={() => isHovering(false)}
       onClick={(e) => {
@@ -34,7 +34,7 @@ const UserBadge = () => {
       )}
       <div
         style={{ display: hovering ? "block" : "none" }}
-        className="fixed bottom-24 right-6 w-max rounded-lg bg-neutral-950 px-3 py-2 text-sm text-neutral-100 shadow-lg"
+        className="fixed bottom-24 right-6 w-max rounded-lg bg-foreground px-3 py-2 text-sm text-background shadow-lg"
       >
         {user.value?.username ? (
           <>

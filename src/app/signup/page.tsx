@@ -19,7 +19,7 @@ const Page = async () => {
   }
 
   return (
-    <div className="inset-0 flex min-h-[94svh] w-full flex-col items-center justify-center">
+    <div className="inset-0 flex min-h-[92svh] w-full flex-col items-center justify-center">
       <div className="-mt-14 flex max-w-sm flex-col gap-4 text-center md:max-w-md">
         <h1 className="text-2xl font-bold">Sign Up</h1>
         <Form action={signup}>
