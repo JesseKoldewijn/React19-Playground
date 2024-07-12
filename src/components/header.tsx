@@ -3,7 +3,7 @@ import LoggedInStatus from "./auth/headerSections/logged-in";
 import LoggedOutStatus from "./auth/headerSections/logged-out";
 import type { validateRequest } from "@/server/auth/lucia";
 import ThemeToggle from "./theme/toggle";
-import { cookies, headers } from "next/headers";
+import { cookies } from "next/headers";
 import { type Theme } from "@/store/theme";
 import {
   SheetTrigger,
@@ -22,11 +22,6 @@ interface HeaderProps {
 }
 
 const Header = ({ requestCtx: validate }: HeaderProps) => {
-  const headersList = headers();
-  const url = headersList.get("url");
-
-  const sp = url ? new URL(url).searchParams : new URLSearchParams();
-
   const theme = cookies().get("r19-theme")?.value == "light" ? "light" : "dark";
 
   return (
