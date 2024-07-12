@@ -1,5 +1,8 @@
+import type { ServerRuntime } from "next";
 import { notFound } from "next/navigation";
 import { NextResponse, type NextRequest } from "next/server";
+
+export const runtime: ServerRuntime = "edge";
 
 // This is a route that requests get redirected to if they are blocked
 export const GET = async (req: NextRequest) => {
