@@ -15,22 +15,38 @@ const initialPass = [
 ];
 
 const RandomWords = () => {
-  const [isInitialSet, setIsInitialSet] = useState(true);
+  const [animation, setAnimation] = useState<"in" | "out" | false>(false);
   const [randomWordsArray, setRandomWordsArray] =
     useState<string[]>(initialPass);
+
+  const setAnimationHandler = async (direction: "in" | "out") => {
+    const delay = new Promise((resolve) =>
+      setTimeout(resolve, direction == "in" ? 1500 : 1000),
+    );
+    await delay;
+    setAnimation(direction);
+  };
 
   useEffect(() => {
     const setRandomWords = () => {
       const words = generate(initialPass.length) as string[];
       setRandomWordsArray(words);
-      setIsInitialSet(false);
     };
+
     setTimeout(() => {
-      setRandomWords();
+      void setAnimationHandler("in")
+        .then(() => setRandomWords())
+        .finally(() => {
+          void setAnimationHandler("out");
+        });
 
       setInterval(() => {
-        setRandomWords();
-      }, 500);
+        void setAnimationHandler("in")
+          .then(() => setRandomWords())
+          .finally(() => {
+            void setAnimationHandler("out");
+          });
+      }, 2500);
     }, 2000);
   }, []);
 
@@ -38,7 +54,13 @@ const RandomWords = () => {
     <>
       {randomWordsArray.map((word, idx) => {
         return (
-          <div key={word + idx} className={cn(isInitialSet && "animate-pulse")}>
+          <div
+            key={word + idx}
+            className={cn(
+              "transition-colors duration-500 ease-linear",
+              animation === "in" ? "text-background" : "text-foreground",
+            )}
+          >
             {word}
           </div>
         );
